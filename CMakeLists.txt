@@ -1,3 +1,5 @@
+# TODO: Support other platforms (this is currently for 3ds)
+
 cmake_minimum_required(VERSION 3.13 FATAL_ERROR)
 
 set(CMAKE_C_STANDARD 11)
