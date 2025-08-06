@@ -28,10 +28,11 @@ foreach(SOURCE_FILE ${ALL_SOURCES})
 
     if(NOT NINTENDO_WIIU)
       add_library(${BASE_NAME} SHARED ${SOURCE_FILE})
-      target_link_libraries(${BASE_NAME} PRIVATE dl Boost::regex)
     endif()
 
     if(NINTENDO_3DS)
+      target_link_libraries(${BASE_NAME} PRIVATE dl Boost::regex)
+
       set(RESOLVER_OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${BASE_NAME}-resolver.s")
       add_custom_command(
         OUTPUT "${RESOLVER_OUTPUT}"
@@ -47,7 +48,7 @@ foreach(SOURCE_FILE ${ALL_SOURCES})
       wut_add_exports(${BASE_NAME} ${BASE_NAME}.def)
       wut_create_rpl(${BASE_NAME})
     else()
-
+      target_link_libraries(${BASE_NAME} PRIVATE Boost::regex)
     endif()
 
     # install(FILES "$<TARGET_FILE:${BASE_NAME}>" TYPE BIN)
