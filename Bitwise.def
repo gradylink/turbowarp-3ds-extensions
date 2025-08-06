@@ -1,0 +1,14 @@
+:NAME Bitwise
+
+:TEXT
+Bitwise_isNumberBits
+Bitwise_toNumberBits
+Bitwise_ofNumberBits
+Bitwise_bitwiseRightShift
+Bitwise_bitwiseLeftShift
+Bitwise_bitwiseLogicalRightShift
+Bitwise_bitwiseLogicalLeftShift
+Bitwise_bitwiseAnd
+Bitwise_bitwiseOr
+Bitwise_bitwiseXor
+Bitwise_bitwiseNot
