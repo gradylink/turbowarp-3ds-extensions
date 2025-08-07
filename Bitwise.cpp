@@ -58,14 +58,7 @@ std::any Bitwise_bitwiseNot(std::map<std::string, std::any> arguments) {
 }
 
 #ifdef __WIIU__
-int rpl_entry(OSDynLoad_Module module,
-              OSDynLoad_EntryReason reason) {
-  if (reason == OS_DYNLOAD_LOADED) {
-    // Do stuff on load
-  } else if (reason == OS_DYNLOAD_UNLOADED) {
-    // Do stuff on unload
-  }
-
+int rpl_entry(OSDynLoad_Module module, OSDynLoad_EntryReason reason) {
   return 0;
 }
 #endif
