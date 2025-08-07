@@ -11,49 +11,49 @@
 
 extern "C" {
 
-std::any Bitwise_isNumberBits(std::map<std::string, std::any> arguments) {
+bool Bitwise_isNumberBits(const std::map<std::string, std::any> &arguments) {
   static const boost::regex bin_regex{"^-?[01]+$"};
-  return boost::regex_match(anyToString(arguments["CENTRAL"]), bin_regex);
+  return boost::regex_match(anyToString(arguments.find("CENTRAL")->second), bin_regex);
 }
 
-std::any Bitwise_toNumberBits(std::map<std::string, std::any> arguments) {
-  return removeLeadingZeros(std::bitset<64>(anyToInt(arguments["CENTRAL"])).to_string());
+void Bitwise_toNumberBits(const std::map<std::string, std::any> &arguments, std::string *ret) {
+  *ret = removeLeadingZeros(std::bitset<64>(anyToInt(arguments.find("CENTRAL")->second)).to_string());
 }
 
-std::any Bitwise_ofNumberBits(std::map<std::string, std::any> arguments) {
-  return std::stoi(anyToString(arguments["CENTRAL"]), nullptr, 2);
+int Bitwise_ofNumberBits(const std::map<std::string, std::any> &arguments) {
+  return std::stoi(anyToString(arguments.find("CENTRAL")->second), nullptr, 2);
 }
 
-std::any Bitwise_bitwiseRightShift(std::map<std::string, std::any> arguments) {
-  return anyToInt(arguments["LEFT"]) >> anyToInt(arguments["RIGHT"]);
+int Bitwise_bitwiseRightShift(const std::map<std::string, std::any> &arguments) {
+  return anyToInt(arguments.find("LEFT")->second) >> anyToInt(arguments.find("RIGHT")->second);
 }
 
-std::any Bitwise_bitwiseLeftShift(std::map<std::string, std::any> arguments) {
-  return anyToInt(arguments["LEFT"]) << anyToInt(arguments["RIGHT"]);
+int Bitwise_bitwiseLeftShift(const std::map<std::string, std::any> &arguments) {
+  return anyToInt(arguments.find("LEFT")->second) << anyToInt(arguments.find("RIGHT")->second);
 }
 
-std::any Bitwise_bitwiseLogicalRightShift(std::map<std::string, std::any> arguments) {
-  return anyToInt(arguments["LEFT"]) >> anyToInt(arguments["RIGHT"]);
+int Bitwise_bitwiseLogicalRightShift(const std::map<std::string, std::any> &arguments) {
+  return static_cast<unsigned int>(anyToInt(arguments.find("LEFT")->second)) >> anyToInt(arguments.find("RIGHT")->second);
 }
 
-std::any Bitwise_bitwiseLogicalLeftShift(std::map<std::string, std::any> arguments) {
-  return anyToInt(arguments["LEFT"]) << anyToInt(arguments["RIGHT"]);
+int Bitwise_bitwiseLogicalLeftShift(const std::map<std::string, std::any> &arguments) {
+  return static_cast<unsigned int>(anyToInt(arguments.find("LEFT")->second)) << anyToInt(arguments.find("RIGHT")->second);
 }
 
-std::any Bitwise_bitwiseAnd(std::map<std::string, std::any> arguments) {
-  return anyToInt(arguments["LEFT"]) & anyToInt(arguments["RIGHT"]);
+int Bitwise_bitwiseAnd(const std::map<std::string, std::any> &arguments) {
+  return anyToInt(arguments.find("LEFT")->second) & anyToInt(arguments.find("RIGHT")->second);
 }
 
-std::any Bitwise_bitwiseOr(std::map<std::string, std::any> arguments) {
-  return anyToInt(arguments["LEFT"]) | anyToInt(arguments["RIGHT"]);
+int Bitwise_bitwiseOr(const std::map<std::string, std::any> &arguments) {
+  return anyToInt(arguments.find("LEFT")->second) | anyToInt(arguments.find("RIGHT")->second);
 }
 
-std::any Bitwise_bitwiseXor(std::map<std::string, std::any> arguments) {
-  return anyToInt(arguments["LEFT"]) ^ anyToInt(arguments["RIGHT"]);
+int Bitwise_bitwiseXor(const std::map<std::string, std::any> &arguments) {
+  return anyToInt(arguments.find("LEFT")->second) ^ anyToInt(arguments.find("RIGHT")->second);
 }
 
-std::any Bitwise_bitwiseNot(std::map<std::string, std::any> arguments) {
-  return ~anyToInt(arguments["CENTRAL"]);
+int Bitwise_bitwiseNot(const std::map<std::string, std::any> &arguments) {
+  return ~anyToInt(arguments.find("CENTRAL")->second);
 }
 }
 
