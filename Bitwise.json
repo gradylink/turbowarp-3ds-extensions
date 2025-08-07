@@ -1,0 +1,13 @@
+{
+  "Bitwise_isNumberBits": "bool",
+  "Bitwise_toNumberBits": "string",
+  "Bitwise_ofNumberBits": "int",
+  "Bitwise_bitwiseRightShift": "int",
+  "Bitwise_bitwiseLeftShift": "int",
+  "Bitwise_bitwiseLogicalRightShift": "int",
+  "Bitwise_bitwiseLogicalLeftShift": "int",
+  "Bitwise_bitwiseAnd": "int",
+  "Bitwise_bitwiseOr": "int",
+  "Bitwise_bitwiseXor": "int",
+  "Bitwise_bitwiseNot": "int"
+}
