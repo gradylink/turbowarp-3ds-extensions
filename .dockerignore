@@ -3,4 +3,4 @@ build/
 *.rpl
 *.so
 *.dylib
-*.dll
+*.d

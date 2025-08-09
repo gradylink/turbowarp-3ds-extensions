@@ -1,0 +1,18 @@
+FROM devkitpro/devkitarm:latest AS ctrdl_builder
+WORKDIR /ctrdl
+
+# Currently broken and idk why.
+RUN git clone https://github.com/kynex7510/CTRDL.git . && git switch dev 
+RUN . /opt/devkitpro/3dsvars.sh && cmake -B Build/ResGen -DCMAKE_BUILD_TYPE=Release ResGen && cmake --build Build/ResGen --config Release && cmake --install Build/ResGen
+RUN . /opt/devkitpro/3dsvars.sh && cmake -B Build -DCMAKE_BUILD_TYPE=Release && cmake --build Build --config Release && cmake --install Build
+
+FROM devkitpro/devkitarm:latest AS main_builder
+WORKDIR /app
+
+COPY --from=ctrdl_builder /opt/devkitpro/portlibs/3ds /opt/devkitpro/portlibs/3ds
+COPY . .
+
+RUN . /opt/devkitpro/3dsvars.sh && mkdir build-3ds && cd build-3ds && arm-none-eabi-cmake .. && make
+
+FROM scratch AS exporter
+COPY --from=main_builder /app/build-3ds/Bitwise.so /Bitwise.so

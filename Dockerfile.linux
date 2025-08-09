@@ -1,0 +1,11 @@
+FROM gcc:latest AS builder
+WORKDIR /app
+
+COPY . .
+
+RUN apt-get update && apt-get install -y --no-install-recommends cmake
+
+RUN mkdir build && cd build && cmake .. && make
+
+FROM scratch AS exporter
+COPY --from=builder /app/build/Bitwise.so /
