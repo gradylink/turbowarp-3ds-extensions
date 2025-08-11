@@ -14,13 +14,6 @@ endif()
 
 set(CMAKE_SHARED_LIBRARY_PREFIX "")
 
-include(cmake/CPM.cmake)
-
-CPMAddPackage(
-    URI "gh:boostorg/regex#boost-1.88.0"
-    OPTIONS "BOOST_REGEX_STANDALONE ON"
-)
-
 file(GLOB ALL_SOURCES *.cpp)
 
 foreach(SOURCE_FILE ${ALL_SOURCES})
@@ -31,7 +24,7 @@ foreach(SOURCE_FILE ${ALL_SOURCES})
     endif()
 
     if(NINTENDO_3DS)
-      target_link_libraries(${BASE_NAME} PRIVATE dl Boost::regex)
+      target_link_libraries(${BASE_NAME} PRIVATE dl)
 
       set(RESOLVER_OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${BASE_NAME}-resolver.s")
       add_custom_command(
@@ -44,11 +37,8 @@ foreach(SOURCE_FILE ${ALL_SOURCES})
       target_compile_options(${BASE_NAME}-resolver PRIVATE -g0)
     elseif(NINTENDO_WIIU)
       add_executable(${BASE_NAME} "${SOURCE_FILE}")
-      target_link_libraries(${BASE_NAME} PRIVATE Boost::regex)
       wut_add_exports(${BASE_NAME} ${BASE_NAME}.def)
       wut_create_rpl(${BASE_NAME})
-    else()
-      target_link_libraries(${BASE_NAME} PRIVATE Boost::regex)
     endif()
 
     # install(FILES "$<TARGET_FILE:${BASE_NAME}>" TYPE BIN)

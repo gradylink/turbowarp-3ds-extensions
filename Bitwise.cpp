@@ -1,7 +1,7 @@
 #include "utils.hpp"
 #include <any>
 #include <bitset>
-#include <boost/regex.hpp>
+#include <iostream>
 #include <map>
 #include <scratch-3ds.hpp>
 #include <string>
@@ -13,8 +13,9 @@
 extern "C" {
 
 bool Bitwise_isNumberBits(const std::map<std::string, std::any> &arguments, ExtensionData data) {
-  static const boost::regex bin_regex{"^-?[01]+$"};
-  return boost::regex_match(anyToString(arguments.find("CENTRAL")->second), bin_regex);
+  for (const auto &c : anyToString(arguments.find("CENTRAL")->second))
+    if (c != '0' && c != '1') return false;
+  return true;
 }
 
 void Bitwise_toNumberBits(const std::map<std::string, std::any> &arguments, std::string *ret, ExtensionData data) {
@@ -26,6 +27,8 @@ int Bitwise_ofNumberBits(const std::map<std::string, std::any> &arguments, Exten
 }
 
 int Bitwise_bitwiseRightShift(const std::map<std::string, std::any> &arguments, ExtensionData data) {
+  std::cout << *data.getSprite().name << std::endl;
+
   return anyToInt(arguments.find("LEFT")->second) >> anyToInt(arguments.find("RIGHT")->second);
 }
 
