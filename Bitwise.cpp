@@ -57,10 +57,10 @@ int Bitwise_bitwiseXor(const std::map<std::string, std::any> &arguments, Extensi
 int Bitwise_bitwiseNot(const std::map<std::string, std::any> &arguments, ExtensionData data) {
   return ~anyToInt(arguments.find("CENTRAL")->second);
 }
-}
 
 #ifdef __WIIU__
 int rpl_entry(OSDynLoad_Module module, OSDynLoad_EntryReason reason) {
   return 0;
 }
 #endif
+}
