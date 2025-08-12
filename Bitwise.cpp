@@ -27,8 +27,6 @@ int Bitwise_ofNumberBits(const std::map<std::string, std::any> &arguments, Exten
 }
 
 int Bitwise_bitwiseRightShift(const std::map<std::string, std::any> &arguments, ExtensionData data) {
-  std::cout << *data.getSprite().name << std::endl;
-
   return anyToInt(arguments.find("LEFT")->second) >> anyToInt(arguments.find("RIGHT")->second);
 }
 
