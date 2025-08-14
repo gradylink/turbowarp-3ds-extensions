@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 3.13 FATAL_ERROR)
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-project(turbowarp-3ds-extensions CXX ASM)
+project(turbowarp-3ds-extensions C ASM)
 
 if(NINTENDO_3DS)
 set_property(GLOBAL PROPERTY TARGET_SUPPORTS_SHARED_LIBS TRUE)
@@ -14,7 +12,7 @@ endif()
 
 set(CMAKE_SHARED_LIBRARY_PREFIX "")
 
-file(GLOB ALL_SOURCES *.cpp)
+file(GLOB ALL_SOURCES *.c)
 
 foreach(SOURCE_FILE ${ALL_SOURCES})
     get_filename_component(BASE_NAME "${SOURCE_FILE}" NAME_WE)
